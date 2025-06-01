@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -26,7 +30,9 @@ const nextConfig = {
     // Use the new contentDispositionType option to fix hydration errors with SVGs
     contentDispositionType: 'attachment',
   },
-  // Hapus experimental.urlImports yang menyebabkan masalah
+  // Configure for GitHub Pages (uncomment and adjust if needed)
+  // basePath: '/your-repo-name',
+  // assetPrefix: '/your-repo-name/',
 };
 
 module.exports = nextConfig;

@@ -1,4 +1,26 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdnjs.cloudflare.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+    // Enable dangerouslyAllowSVG for SVG support if needed
+    dangerouslyAllowSVG: true,
+    // Use the new contentDispositionType option to fix hydration errors with SVGs
+    contentDispositionType: 'attachment',
+  },
+  // Hapus experimental.urlImports yang menyebabkan masalah
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

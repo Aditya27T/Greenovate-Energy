@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="hero-gradient px-6 md:px-12 lg:px-24">
       <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center relative z-10 py-16 md:py-6">
         <div className="text-left">
-          <p className="text-sm text-gray-700 mb-2 font-medium">🌱 PT. Greenovate Energy Solutions</p>
+          <p className="text-sm text-gray-700 mb-2 font-medium"> PT. Greenovate Energy Solutions</p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 text-gray-800 uppercase leading-tight">EMPOWERING EDUCATION AND INNOVATION THROUGH CLEAN ENERGY</h1>
           <p className="text-gray-600 mb-8 opacity-75 font-medium">Menggabungkan teknologi hijau dengan pendekatan edukatif untuk mendorong transformasi energi di Indonesia melalui perangkat pembelajaran, pelatihan bersertifikat, dan layanan konsultasi profesional dalam sektor energi terbarukan.</p>
           <div className="flex flex-wrap gap-4">

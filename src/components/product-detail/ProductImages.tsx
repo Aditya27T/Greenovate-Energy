@@ -12,83 +12,86 @@ interface ProductImagesProps {
 }
 
 const ProductImages = ({ images, name }: ProductImagesProps) => {
-  const [activeImage, setActiveImage] = useState(images.main);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(images.main);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const allImages = [images.main, ...images.thumbnails];
 
   const handleThumbnailClick = (image: string, index: number) => {
-    setActiveImage(image);
-    setActiveIndex(index);
+    setSelectedImage(image);
+    setSelectedIndex(index);
+  };
+
+  const handlePrevious = () => {
+    const newIndex = selectedIndex === 0 ? allImages.length - 1 : selectedIndex - 1;
+    setSelectedImage(allImages[newIndex]);
+    setSelectedIndex(newIndex);
+  };
+
+  const handleNext = () => {
+    const newIndex = selectedIndex === allImages.length - 1 ? 0 : selectedIndex + 1;
+    setSelectedImage(allImages[newIndex]);
+    setSelectedIndex(newIndex);
   };
 
   return (
-    <div>
+    <div className="space-y-4">
       {/* Main Product Image */}
-      <div className="product-carousel mb-4 relative">
-        <div className="main-image rounded-lg overflow-hidden relative aspect-square">
-          <Image 
-            src={activeImage} 
-            alt={name} 
-            fill
-            className="object-contain"
-          />
-        </div>
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+        <Image
+          src={selectedImage}
+          alt={name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+        />
+        
         {/* Navigation Arrows */}
-        <button 
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-          onClick={() => {
-            const newIndex = activeIndex === 0 ? images.thumbnails.length - 1 : activeIndex - 1;
-            handleThumbnailClick(newIndex === 0 ? images.main : images.thumbnails[newIndex - 1], newIndex);
-          }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button 
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-          onClick={() => {
-            const newIndex = (activeIndex + 1) % (images.thumbnails.length + 1);
-            handleThumbnailClick(newIndex === 0 ? images.main : images.thumbnails[newIndex - 1], newIndex);
-          }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        {allImages.length > 1 && (
+          <>
+            <button
+              onClick={handlePrevious}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </>
+        )}
       </div>
-      
+
       {/* Thumbnails */}
-      <div className="grid grid-cols-4 gap-4">
-        <div 
-          className={`thumbnail ${activeIndex === 0 ? 'active' : ''}`}
-          onClick={() => handleThumbnailClick(images.main, 0)}
-        >
-          <div className="relative aspect-square">
-            <Image 
-              src={images.main} 
-              alt={`${name} thumbnail 1`} 
-              fill
-              className="w-full h-auto rounded-md object-cover"
-            />
-          </div>
-        </div>
-        {images.thumbnails.map((thumbnail, index) => (
-          <div 
-            key={index}
-            className={`thumbnail ${activeIndex === index + 1 ? 'active' : ''}`}
-            onClick={() => handleThumbnailClick(thumbnail, index + 1)}
-          >
-            <div className="relative aspect-square">
-              <Image 
-                src={thumbnail} 
-                alt={`${name} thumbnail ${index + 2}`} 
+      {allImages.length > 1 && (
+        <div className="grid grid-cols-4 gap-2">
+          {allImages.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => handleThumbnailClick(image, index)}
+              className={`relative aspect-square overflow-hidden rounded-md bg-gray-100 ${
+                selectedIndex === index ? 'ring-2 ring-blue-500' : 'hover:opacity-75'
+              }`}
+            >
+              <Image
+                src={image}
+                alt={`${name} ${index + 1}`}
                 fill
-                className="w-full h-auto rounded-md object-cover"
+                className="object-cover"
+                sizes="(max-width: 768px) 25vw, 12.5vw"
               />
-            </div>
-          </div>
-        ))}
-      </div>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

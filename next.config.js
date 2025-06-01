@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'unpkg.com',
+        port: '',
+        pathname: '/leaflet@1.9.4/dist/images/**',
+      },
     ],
     // Enable dangerouslyAllowSVG for SVG support if needed
     dangerouslyAllowSVG: true,

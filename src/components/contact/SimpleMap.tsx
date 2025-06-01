@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 interface SimpleMapProps {
@@ -7,74 +8,71 @@ interface SimpleMapProps {
   popupText?: string;
 }
 
-const SimpleMap: React.FC<SimpleMapProps> = ({
-  center = [-7.9797, 112.6304],
-  zoom = 15,
-  popupText = "PT. Greenovate Energy Solutions<br />Jl. Soekarno Hatta, Malang"
-}) => {
+const SimpleMap = ({ 
+  center = [-7.983908, 112.621391], 
+  zoom = 15, 
+  popupText = "PT Greenovate Teknologi Indonesia" 
+}: SimpleMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
-  const [isClient, setIsClient] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!isClient || !mapRef.current) return;
-
-    let mounted = true;
+    if (!mounted) return;
 
     const initMap = async () => {
+      if (!mapRef.current) return;
+
       try {
         // Clean up existing map instance
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.remove();
-          mapInstanceRef.current = null;
+        if (mapRef.current) {
+          mapRef.current.innerHTML = '';
         }
 
         // Dynamic import of Leaflet
         const L = await import('leaflet');
-        
-        // Import CSS
-        await import('leaflet/dist/leaflet.css');
+
+        // Import CSS by adding link to head
+        if (!document.querySelector('link[href*="leaflet.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+          document.head.appendChild(link);
+        }
 
         if (!mounted || !mapRef.current) return;
 
         // Clear container and remove any existing Leaflet reference
-        const container = mapRef.current;
-        container.innerHTML = '';
+        mapRef.current.innerHTML = '';
         
         // Remove Leaflet's internal tracking
-        if ((container as any)._leaflet_id) {
-          delete (container as any)._leaflet_id;
-        }
+        delete (mapRef.current as any)._leaflet_id;
 
         // Wait a bit to ensure DOM is ready
         await new Promise(resolve => setTimeout(resolve, 100));
 
-        if (!mounted || !mapRef.current) return;
-
         // Create map with dragging disabled
-        const map = L.map(container, {
-          attributionControl: false,
+        const map = L.map(mapRef.current, {
           dragging: false,  // Disable dragging
           scrollWheelZoom: false, // Optionally disable scroll zooming as well
+          doubleClickZoom: false,
+          touchZoom: false,
+          boxZoom: false,
+          keyboard: false
         }).setView(center, zoom);
-
-        mapInstanceRef.current = map;
 
         // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         // Create custom icon
         const customIcon = L.icon({
-          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-          iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+          iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -82,68 +80,52 @@ const SimpleMap: React.FC<SimpleMapProps> = ({
         });
 
         // Add marker
-        L.marker(center, { icon: customIcon })
-          .addTo(map)
-          .bindPopup(popupText)
-          .openPopup();
+        const marker = L.marker(center, { icon: customIcon }).addTo(map);
+        
+        if (popupText) {
+          marker.bindPopup(popupText).openPopup();
+        }
 
         // Invalidate size after everything is loaded
         setTimeout(() => {
-          if (map && mounted) {
-            map.invalidateSize();
-          }
-        }, 200);
-
-        setIsLoading(false);
+          map.invalidateSize();
+        }, 100);
 
       } catch (error) {
         console.error('Error initializing map:', error);
-        setIsLoading(false);
+        
+        // Fallback: show a simple div with location info
+        if (mapRef.current) {
+          mapRef.current.innerHTML = `
+            <div class="flex items-center justify-center h-full bg-gray-100 rounded-lg border shadow-lg">
+              <div class="text-center p-6">
+                <div class="text-lg font-semibold text-gray-700 mb-2">${popupText}</div>
+                <div class="text-sm text-gray-500">Map temporarily unavailable</div>
+                <div class="text-xs text-gray-400 mt-2">Location: ${center[0]}, ${center[1]}</div>
+              </div>
+            </div>
+          `;
+        }
       }
     };
 
     initMap();
+  }, [mounted, center, zoom, popupText]);
 
-    return () => {
-      mounted = false;
-      if (mapInstanceRef.current) {
-        try {
-          mapInstanceRef.current.remove();
-        } catch (e) {
-          console.error('Error removing map:', e);
-        }
-        mapInstanceRef.current = null;
-      }
-    };
-  }, [isClient, center, zoom, popupText]);
-
-  if (!isClient) {
+  if (!mounted) {
     return (
-      <div
-        style={{ height: '400px', width: '100%', borderRadius: '0.375rem' }}
-        className="bg-gray-200 flex items-center justify-center"
-      >
-        <div className="text-gray-600">Loading map...</div>
+      <div className="w-full h-96 lg:h-[500px] bg-gray-100 rounded-lg animate-pulse flex items-center justify-center shadow-lg">
+        <div className="text-gray-500">Loading map...</div>
       </div>
     );
   }
 
   return (
-    <div className="relative">
-      {isLoading && (
-        <div
-          style={{ height: '400px', width: '100%', borderRadius: '0.375rem' }}
-          className="bg-gray-200 flex items-center justify-center absolute inset-0 z-10"
-        >
-          <div className="text-gray-600">Loading map...</div>
-        </div>
-      )}
-      <div
-        ref={mapRef}
-        style={{ height: '400px', width: '100%', borderRadius: '0.375rem' }}
-        className="bg-gray-200"
-      />
-    </div>
+    <div 
+      ref={mapRef} 
+      className="w-full h-96 lg:h-[500px] rounded-lg border border-gray-200 shadow-lg"
+      style={{ minHeight: '384px' }}
+    />
   );
 };
 

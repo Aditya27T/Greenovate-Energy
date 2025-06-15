@@ -12,7 +12,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [mounted, setMounted] = useState(false);
   const [imageError, setImageError] = useState(false);
-  
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -45,8 +45,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="relative w-full aspect-square bg-gray-50">
           {/* Gunakan img tag biasa jika image adalah placeholder */}
           {product.images.main.includes('placehold.co') ? (
-            <img 
-              src={product.images.main} 
+            <Image
+              src={product.images.main}
               alt={product.name}
               className="w-full h-full object-cover"
             />
@@ -54,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             // Jika bukan placeholder, coba gunakan Next Image dengan fallback
             <>
               {!imageError ? (
-                <Image 
+                <Image
                   src={product.images.main}
                   alt={product.name}
                   layout="fill"
@@ -79,24 +79,36 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p className="text-xl font-bold mb-4">Rp {product.price.toLocaleString('id-ID')}</p>
           <div className="flex space-x-2">
             {product.links.tokopedia && (
-              <Link 
-                href={product.links.tokopedia} 
-                className="flex items-center justify-center bg-primary hover:bg-opacity-90 text-white text-sm font-medium py-2 rounded-md transition flex-1"
+              <Link
+                href={product.links.tokopedia}
+                className="flex items-center justify-center bg-green-500 hover:bg-green-400 text-white text-sm font-medium py-2 rounded-md transition flex-1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="bg-white text-primary rounded-full w-4 h-4 flex items-center justify-center mr-1 text-xs font-bold">T</span>
+                <Image
+                  src="/tokped.png"
+                  alt="Tokopedia"
+                  width={16}
+                  height={16}
+                  className="mr-1"
+                />
                 Tokopedia
               </Link>
             )}
             {product.links.shopee && (
-              <Link 
-                href={product.links.shopee} 
-                className="flex items-center justify-center bg-red-500 hover:bg-opacity-90 text-white text-sm font-medium py-2 rounded-md transition flex-1"
+              <Link
+                href={product.links.shopee}
+                className="flex items-center justify-center bg-orange-500 hover:bg-orange-400 text-white text-sm font-medium py-2 rounded-md transition flex-1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="bg-white text-red-500 rounded-full w-4 h-4 flex items-center justify-center mr-1 text-xs font-bold">S</span>
+                <Image
+                  src="/shopee.png"
+                  alt="Tokopedia"
+                  width={16}
+                  height={16}
+                  className="mr-1"
+                />                
                 Shopee
               </Link>
             )}

@@ -3,7 +3,7 @@ export const siteConfig = {
     description: 'Sustainable energy solutions for a greener future',
     logo: '/logo1.png',
     footer: {
-      address: 'Greenovate Energy Solutions, Jl. Raya No. 123, Jakarta, Indonesia',
+      address: 'Greenovate Energy Solutions, Malang, East Java, Indonesia',
       phone: '+62 812-3456-7890',
       email: 'hello@loqojpsum.com',
       copyright: '© 2025 — Copyright'

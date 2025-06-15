@@ -20,6 +20,17 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'img.icons8.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
         hostname: 'unpkg.com',
         port: '',
         pathname: '/leaflet@1.9.4/dist/images/**',

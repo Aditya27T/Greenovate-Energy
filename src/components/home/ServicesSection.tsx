@@ -12,10 +12,11 @@ const ServicesSection = () => {
               <div className="bg-gray-200 w-16 h-16 mx-auto mb-4 rounded-lg flex items-center justify-center">
                 <div className="relative w-10 h-10">
                   <Image 
-                    src={service.icon} 
+                    src={service.icon}
                     alt={service.title} 
                     fill
                     className="object-contain"
+                    unoptimized
                   />
                 </div>
               </div>

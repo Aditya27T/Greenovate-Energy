@@ -61,7 +61,7 @@ const SimpleMap = ({
           doubleClickZoom: false,
           touchZoom: false,
           boxZoom: false,
-          keyboard: false
+          keyboard: false,
         }).setView(center, zoom);
 
         // Add tile layer
@@ -98,7 +98,7 @@ const SimpleMap = ({
         if (mapRef.current) {
           mapRef.current.innerHTML = `
             <div class="flex items-center justify-center h-full bg-gray-100 rounded-lg border shadow-lg">
-              <div class="text-center p-6">
+              <div class="text-center p-6 bg-white rounded-lg">
                 <div class="text-lg font-semibold text-gray-700 mb-2">${popupText}</div>
                 <div class="text-sm text-gray-500">Map temporarily unavailable</div>
                 <div class="text-xs text-gray-400 mt-2">Location: ${center[0]}, ${center[1]}</div>
@@ -114,7 +114,7 @@ const SimpleMap = ({
 
   if (!mounted) {
     return (
-      <div className="w-full h-96 lg:h-[500px] bg-gray-100 rounded-lg animate-pulse flex items-center justify-center shadow-lg">
+      <div className="w-full h-96 lg:h-[500px] bg-gray-100 rounded-lg animate-pulse flex items-center justify-center">
         <div className="text-gray-500">Loading map...</div>
       </div>
     );
@@ -123,8 +123,9 @@ const SimpleMap = ({
   return (
     <div 
       ref={mapRef} 
-      className="w-full h-96 lg:h-[500px] rounded-lg border border-gray-200 shadow-lg"
+      className="w-full h-96 lg:h-[500px] rounded-lg border border-gray-200 overflow-hidden z-10"
       style={{ minHeight: '384px' }}
+      z-index={10}
     />
   );
 };

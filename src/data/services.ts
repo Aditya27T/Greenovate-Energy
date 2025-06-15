@@ -5,18 +5,18 @@ export const services: Service[] = [
     id: '1',
     title: 'Produksi kit energi terbarukan',
     description: 'Desain dan pembuatan kit pembelajaran energi terbarukan',
-    icon: 'https://placehold.co/50x50/3CB878/FFFFFF?text=energi kit'
+    icon: 'https://img.icons8.com/fluency/48/solar-panel.png'
   },
   {
     id: '2',
     title: 'Pelatihan bersertifikat',
     description: 'Program pelatihan untuk peningkatan kompetensi di bidang energi terbarukan',
-    icon: 'https://placehold.co/50x50/3CB878/FFFFFF?text=Pelatihan'
+    icon: 'https://img.icons8.com/fluency/48/certificate.png'
   },
   {
     id: '3',
     title: 'Layanan konsultasi energi bersih',
     description: 'Konsultasi untuk implementasi proyek energi bersih yang efisien',
-    icon: 'https://placehold.co/50x50/3CB878/FFFFFF?text=konsultasi'
+    icon: 'https://img.icons8.com/fluency/48/consultation.png'
   }
 ];

@@ -8,7 +8,7 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative w-full aspect-[5/4]">
             <Image 
-              src="/hero2.png" 
+              src="/assets/about-landing.jpeg" 
               alt="Greenovate Team" 
               fill
               className="rounded-lg shadow-md object-cover"

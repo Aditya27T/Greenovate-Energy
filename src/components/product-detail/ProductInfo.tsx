@@ -69,7 +69,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               href={product.links.tokopedia}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+              className="flex items-center justify-center w-full bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               <Image
                 src="/tokped.png"
@@ -87,7 +87,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               href={product.links.shopee}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+              className="flex items-center justify-center w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               <Image
                 src="/shopee.png"

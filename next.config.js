@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -25,6 +29,11 @@ const nextConfig = {
         hostname: 'raw.githubusercontent.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        hostname: 'unpkg.com',
+        port: '',
+        pathname: '/leaflet@1.9.4/dist/images/**',
       },
     ],
     // Enable dangerouslyAllowSVG for SVG support if needed

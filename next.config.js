@@ -32,7 +32,6 @@ const nextConfig = {
     // Use the new contentDispositionType option to fix hydration errors with SVGs
     contentDispositionType: 'attachment',
   },
-  // Hapus experimental.urlImports yang menyebabkan masalah
 };
 
 module.exports = nextConfig;

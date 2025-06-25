@@ -1,11 +1,12 @@
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
+import { Link as ScrollLink } from 'react-scroll';
 
 const HeroSection = () => {
   return (
     <section className="relative bg-gradient-to-br from-green-50 to-blue-50 px-6 md:px-12 lg:px-24">
     <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center relative z-10 py-16 md:py-24">
-      {/* Image - Now appears first on mobile */}
       <div className="flex items-center justify-center md:order-2">
         <div className="relative w-full aspect-[4/3] max-w-lg">
           <Image
@@ -33,12 +34,16 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-wrap gap-4 pt-4">
-          <Link
-            href="/products"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200"
-          >
-            Explore Now
-          </Link>
+        <ScrollLink
+              to="services" 
+              spy={true} 
+              smooth={true}
+              offset={-80} 
+              duration={500}
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md transition-colors duration-200 cursor-pointer"
+            >
+              <span className="animate-pulse">Explore Now</span>
+            </ScrollLink>
           <Link
             href="/about"
             className="text-gray-800 font-bold py-3 px-6 hover:bg-gray-100 rounded-md transition-colors duration-200"

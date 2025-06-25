@@ -41,9 +41,6 @@ const nextConfig = {
     // Use the new contentDispositionType option to fix hydration errors with SVGs
     contentDispositionType: 'attachment',
   },
-  // Configure for GitHub Pages (uncomment and adjust if needed)
-  // basePath: '/your-repo-name',
-  // assetPrefix: '/your-repo-name/',
 };
 
 module.exports = nextConfig;

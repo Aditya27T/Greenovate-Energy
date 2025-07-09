@@ -20,6 +20,6 @@ export const services: Service[] = [
     title: 'Layanan konsultasi energi bersih',
     description: 'Konsultasi untuk implementasi proyek energi bersih yang efisien',
     icon: 'https://img.icons8.com/fluency/48/consultation.png',
-    url: '/consultation'
+    url: 'https://api.whatsapp.com/send/?phone=6281234567890'
   }
 ];

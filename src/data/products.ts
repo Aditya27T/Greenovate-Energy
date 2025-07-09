@@ -1,6 +1,5 @@
 import { Product } from '@/types';
 
-// Update data produk dengan path gambar yang benar
 export const products: Product[] = [
   {
     id: 'mini-hydro-horizontal',

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,6 +15,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "lucide-react": "^0.515.0",
     "next": "13.5.11",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",

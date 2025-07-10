@@ -23,7 +23,7 @@ const VisionSection = () => {
             <div className="relative w-full aspect-[7/5]">
               <Image 
                 src="https://placehold.co/350x250/EEEEEE/3CB878?text=Team+1" 
-                alt="Team Member 1" 
+                alt="Tim ahli Greenovate sedang merancang prototipe" 
                 fill
                 className="object-cover"
               />
@@ -33,7 +33,8 @@ const VisionSection = () => {
             <div className="relative w-full aspect-[7/5]">
               <Image 
                 src="https://placehold.co/350x250/EEEEEE/3CB878?text=Team+2" 
-                alt="Team Member 2" 
+                alt="Tim ahli Greenovate sedang merancang prototipe"
+ 
                 fill
                 className="object-cover"
               />
@@ -43,7 +44,7 @@ const VisionSection = () => {
             <div className="relative w-full aspect-[7/5]">
               <Image 
                 src="https://placehold.co/350x250/EEEEEE/3CB878?text=Team+3" 
-                alt="Team Member 3" 
+                alt="Tim ahli Greenovate sedang merancang prototipe"
                 fill
                 className="object-cover"
               />

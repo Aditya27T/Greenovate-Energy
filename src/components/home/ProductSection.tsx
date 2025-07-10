@@ -13,7 +13,7 @@ const ProductSection = () => {
         <div className="relative w-full aspect-[5/4]">
           <Image 
             src="/alat/minihydroh.png" 
-            alt="Product Image" 
+            alt="Kit pembangkit listrik tenaga air mini hidro horizontal dari Greenovate"
             fill
             className="object-contain"
           />

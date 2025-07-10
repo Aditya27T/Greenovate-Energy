@@ -7,7 +7,7 @@ const MissionSection = () => {
         <div className="relative w-full aspect-square">
           <Image 
             src="/about2.png" 
-            alt="Team working together" 
+            alt="Tim Greenovate berkolaborasi merancang solusi energi bersih yang inovatif"
             fill
             className="rounded-lg object-cover"
           />

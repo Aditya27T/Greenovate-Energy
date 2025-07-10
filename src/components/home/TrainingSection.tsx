@@ -19,7 +19,7 @@ const TrainingSection = () => {
         <div className="relative w-full aspect-[5/4]">
           <Image 
             src="/train.png" 
-            alt="Training Image" 
+            alt="Suasana program pelatihan energi terbarukan yang diadakan oleh Greenovate" 
             fill
             className="rounded-lg object-cover"
           />

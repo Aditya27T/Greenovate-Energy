@@ -44,13 +44,6 @@ export default function ProductDetailPage({
       '@type': 'Brand',
       name: 'Greenovate Energy Solutions',
     },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'IDR',
-      price: product.price.toString(),
-      availability: 'https://schema.org/InStock',
-      url: `https://www.greenovateenergyslt.com/products/${product.id}`,
-    },
   };
 
   const similarProducts = getSimilarProducts(params.id);

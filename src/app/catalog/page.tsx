@@ -5,7 +5,6 @@ import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Komponen terpisah untuk menghindari masalah dengan useSearchParams
 const CatalogContent = () => {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -13,19 +12,16 @@ const CatalogContent = () => {
   const [pdfError, setPdfError] = useState(false);
   const shouldDownload = searchParams?.get('download') === 'true';
 
-  // Path ke file PDF - pastikan file ini ada di folder public
   const pdfPath = '/assets/catalog-greenovate-2025.pdf';
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Simulasi loading PDF dan auto-download jika diperlukan
   useEffect(() => {
     if (!mounted) return;
     
     if (shouldDownload) {
-      // Trigger download immediately
       handleDownload();
     }
     
@@ -39,7 +35,6 @@ const CatalogContent = () => {
   const handleDownload = () => {
     if (typeof window === 'undefined') return;
     
-    // Download PDF
     const link = document.createElement('a');
     link.href = pdfPath;
     link.download = 'Katalog-Greenovate-Energy-Solutions-2025.pdf';
@@ -285,7 +280,6 @@ const CatalogContent = () => {
   );
 };
 
-// Loading fallback component
 const CatalogLoading = () => (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center">
     <div className="text-center">
@@ -296,7 +290,6 @@ const CatalogLoading = () => (
   </div>
 );
 
-// Main page component with Suspense wrapper
 const CatalogPage = () => {
   return (
     <Suspense fallback={<CatalogLoading />}>

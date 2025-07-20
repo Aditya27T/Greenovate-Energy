@@ -148,13 +148,13 @@ export const LocalBusinessSchema = () => {
     ],
     
     // Rating & Review (jika sudah ada)
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "47",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
+    // "aggregateRating": {
+    //   "@type": "AggregateRating",
+    //   "ratingValue": "4.8",
+    //   "reviewCount": "47",
+    //   "bestRating": "5",
+    //   "worstRating": "1"
+    // },
     
     // Produk/Layanan Utama
     "hasOfferCatalog": {

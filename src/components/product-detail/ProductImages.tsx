@@ -42,7 +42,7 @@ const ProductImages = ({ images, name }: ProductImagesProps) => {
           src={selectedImage}
           alt={name}
           fill
-          className="object-cover"
+          className="object-contain transition-transform duration-300"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
@@ -85,7 +85,8 @@ const ProductImages = ({ images, name }: ProductImagesProps) => {
                 src={image}
                 alt={`${name} ${index + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain transition-transform duration-300"
+                onError={() => console.error(`Failed to load image: ${image}`)}
                 sizes="(max-width: 768px) 25vw, 12.5vw"
               />
             </button>

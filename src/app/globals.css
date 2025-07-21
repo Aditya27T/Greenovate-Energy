@@ -88,3 +88,17 @@ body {
 .thumbnail.active {
   border-color: #34D399;
 }
+
+.swiper-pagination-custom .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #D1D5DB; /* gray-300 */
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 9999px;
+  background-color: #34D399; /* primary color */
+}

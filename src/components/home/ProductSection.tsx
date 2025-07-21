@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getFeaturedProduct } from '@/data/products';
+import { getFeaturedProducts } from '@/data/products';
 
 const ProductSection = () => {
-  const featuredProduct = getFeaturedProduct();
+  const featuredProduct = getFeaturedProducts();
 
   if (!featuredProduct) return null;
 

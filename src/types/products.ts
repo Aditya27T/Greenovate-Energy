@@ -3,6 +3,7 @@ export interface Product {
     name: string;
     description: string;
     price: number;
+    category: 'Picohydro' | 'Microhydro' | 'Edukit';
     images: {
       main: string;
       thumbnails: string[];
@@ -10,6 +11,10 @@ export interface Product {
     links: {
       tokopedia?: string;
       shopee?: string;
+    };
+    details: {
+      specifications: string[];
+      components: string[];
     };
     featured?: boolean;
   }
